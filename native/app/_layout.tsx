@@ -5,7 +5,7 @@ import 'react-native-reanimated';
 import { WebView } from 'react-native-webview';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { SafeAreaView } from 'react-native';
+import { Platform, SafeAreaView } from 'react-native';
 import React from 'react';
 
 export default function RootLayout() {
@@ -19,10 +19,15 @@ export default function RootLayout() {
     return null;
   }
 
+  const host =
+  Platform.OS === 'android'
+    ? 'http://10.0.2.2:5173' 
+    : 'http://localhost:5173';
+
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <SafeAreaView style={{ flex: 1 }}>
-        <WebView source={{ uri: 'http://localhost:5173' }} />
+        <WebView source={{ uri: host }} />
       </SafeAreaView>
       <StatusBar style="auto" />
     </ThemeProvider>
