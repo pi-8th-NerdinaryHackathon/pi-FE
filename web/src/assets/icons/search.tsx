@@ -1,17 +1,18 @@
 interface SearchIconProps {
   width?: string;
   height?: string;
+  color?: string;
 }
 
 function SearchIcon(props: SearchIconProps) {
-  const { width = "32", height = "32" } = props;
+  const { width = "32", height = "32", color = "none" } = props;
 
   return (
     <svg
       width={width}
       height={height}
       viewBox="0 0 28 28"
-      fill="none"
+      fill={color}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
