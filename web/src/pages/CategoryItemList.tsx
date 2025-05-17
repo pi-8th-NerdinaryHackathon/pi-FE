@@ -1,8 +1,8 @@
 import BackHeader from "@/components/layout/BackHeader";
 import ItemBox, { type ItemBoxProps } from "@/components/common/ItemBox";
-import { getAllProduct } from "@/apis/getAllProduct.api";
+import { getCategoryProduct } from "@/apis/getCategoryProduct.api";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { path } from "@/routes/path";
 export interface RawProduct {
   product: {
@@ -25,14 +25,15 @@ function parseProducts(rawList: RawProduct[]): ItemBoxProps[] {
     onClick: () => (window.location.href = `/detail/${product.id}`),
   }));
 }
-function AddWish() {
+function CatrgoryItemList() {
+  const { categoryId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState<ItemBoxProps[]>([]);
   useEffect(() => {
     async function fetchProducts() {
       setIsLoading(true);
       try {
-        const rawList = await getAllProduct(); // RawProduct[]
+        const rawList = await getCategoryProduct(categoryId); // RawProduct[]
         const items = parseProducts(rawList); // ItemBoxProps[]
         setProducts(items);
       } catch (error) {
@@ -44,21 +45,31 @@ function AddWish() {
 
     fetchProducts();
   }, []); // 빈 배열: 마운트 시 한 번만 실행
+
   return (
     <div className="flex h-full w-full flex-col">
       <BackHeader
-        title={"위시리스트 추가"}
+        title={"카테고리 제품"}
         className="gap-2 border-b border-b-gray-200 p-[0.875rem] text-[1.125rem] font-bold"
       />
       <div className="flex w-full justify-center py-6 text-[15px] font-medium text-gray-900">
-        제품을 선택해 위시리스트에 추가해보세요!
+        카테고리 제품을 위시리스트에 추가해보세요!
       </div>
       <div className="grid h-fit w-full grid-cols-2 justify-items-center">
-        {products.map((item, index) => (
-          <ItemBox key={`${item.title}-${index}`} {...item} />
-        ))}
+        {!isLoading &&
+          products.map((item, index) => (
+            <ItemBox
+              key={`${item.title}-${index}`}
+              {...item}
+              isLoading={isLoading}
+            />
+          ))}
+        {isLoading &&
+          Array.from({ length: 4 }).map((_, idx) => (
+            <ItemBox key={idx} isLoading />
+          ))}
       </div>
     </div>
   );
 }
-export default AddWish;
+export default CatrgoryItemList;

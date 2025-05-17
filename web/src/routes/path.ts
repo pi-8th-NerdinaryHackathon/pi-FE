@@ -3,5 +3,6 @@ export const path = {
   search: "/search",
   list: "/list",
   detail: "/detail/:id",
+  category: "category/:categoryId",
   add: "/add",
 };

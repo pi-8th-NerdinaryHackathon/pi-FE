@@ -8,8 +8,25 @@ export interface ItemBoxProps {
   title: string;
   price: number;
   onClick: () => void;
+  isLoading?: boolean;
 }
 function ItemBox(props: ItemBoxProps) {
+  if (props.isLoading) {
+    return (
+      <div className="flex animate-pulse flex-col gap-3 p-4">
+        <div className="aspect-square h-44 w-44 rounded-2xl bg-gray-200"></div>
+        <div className="flex h-fit w-full flex-wrap gap-1">
+          <div className="h-4 w-14 rounded bg-gray-200"></div>
+          <div className="h-4 w-14 rounded bg-gray-200"></div>
+        </div>
+        <div className="flex flex-col gap-1">
+          <div className="h-3 w-20 rounded bg-gray-200"></div>
+          <div className="h-6 w-32 rounded bg-gray-200"></div>
+          <div className="mt-2 h-5 w-20 rounded bg-gray-200"></div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div onClick={props.onClick} className="flex cursor-pointer flex-col gap-3">
       <img
