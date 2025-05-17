@@ -8,7 +8,7 @@ import furnitureIcon from "@/assets/icons/furniture.svg";
 import craftIcon from "@/assets/icons/craft.svg";
 import clothIcon from "@/assets/icons/cloth.svg";
 
-interface TotalCategoryProps {
+export interface TotalCategoryProps {
   items: CategoryProps[];
 }
 
@@ -34,7 +34,7 @@ function TotalCategory({ items }: TotalCategoryProps) {
             key={item.id ?? item.name} // ← key 추가
             className="flex flex-col items-center gap-2"
           >
-            <button onClick={() => navigate(`/category/${item.name}`)}>
+            <button onClick={() => navigate(`/category/${item.id}`)}>
               <img
                 src={getCategoryImage(item.name)}
                 alt={item.name}
