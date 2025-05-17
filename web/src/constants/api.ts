@@ -3,6 +3,9 @@ export const API_DOMAINS = {
   TEST_SERVER: "/hello/head",
   GET_ALL_PRODUCT: "/api/products",
   GET_CATEGORY_PRODUCT: "/api/products/category/:categoryId",
+  GET_CATEGORIES: "/api/products/categories",
   GET_PRODUCT_DETAIL: "/api/products/:id",
+  GET_SEARCH_BY_TEXT: "/api/search",
+  POST_SEARCH_BY_IMAGE: "/api/search/image-search",
   GET_CATEGORY: "/api/products/categories",
 };
