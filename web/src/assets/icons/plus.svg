@@ -1,0 +1,14 @@
+<svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="33" height="32" fill="#C6C6C6"/>
+<g id="HOME">
+<rect width="402" height="1374" transform="translate(-185 -210)" fill="#F1F5F9"/>
+<rect id="Rectangle 3" x="-167" y="-92" width="366" height="319" rx="20" fill="#0DAA80"/>
+<path id="Rectangle 4" d="M-167 -48H199V208C199 219.046 190.046 228 179 228H-147C-158.046 228 -167 219.046 -167 208V-48Z" fill="white"/>
+<rect id="image 9" x="-151" y="-32" width="333" height="132" rx="16" fill="#E2E8F0"/>
+<g id="Frame 41">
+<g id="plus">
+<path id="Vector" d="M7.16663 16H25.8333M16.5 6.66663V25.3333" stroke="#0DAA80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</g>
+</svg>
