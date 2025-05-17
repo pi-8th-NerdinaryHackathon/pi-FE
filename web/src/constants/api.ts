@@ -5,4 +5,5 @@ export const API_DOMAINS = {
   GET_CATEGORY_PRODUCT: "/api/products/category/:categoryId",
   GET_CATEGORIES: "/api/products/categories",
   GET_PRODUCT_DETAIL: "/api/products/:id",
+  POST_SEARCH_BY_IMAGE: "/api/search/image-search",
 };
