@@ -13,6 +13,7 @@ function Home() {
     min: 100,
     max: 1980,
   };
+
   const pushDummy: PushTrashProps = {
     onClick: () => console.log(12),
     category: "플라스틱",

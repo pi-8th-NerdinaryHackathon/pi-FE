@@ -1,5 +1,6 @@
 import next from "@/assets/icons/next.svg";
 import { formatWithCommas } from "@/utils/formatWithCommas";
+import { Category } from "../common/Category";
 export interface WishListProps {
   category: string[];
   company: string;
@@ -24,8 +25,14 @@ function WishList(props: WishListProps) {
         <img className="aspect-square h-34 w-34 rounded-2xl object-fill" />
         <div className="flex flex-col">
           <div className="flex h-fit w-full flex-wrap gap-1">
-            <Category content="플라스틱" />
-            <Category content="공예제품" />
+            <Category
+              content="플라스틱"
+              className="bg-slate-100 text-gray-500"
+            />
+            <Category
+              content="공예제품"
+              className="bg-slate-100 text-gray-500"
+            />
           </div>
           <h3 className="mt-2 text-xs font-medium text-gray-500">
             No plastic sunday
@@ -63,13 +70,7 @@ function WishList(props: WishListProps) {
     </div>
   );
 }
-const Category = ({ content }: { content: string }) => {
-  return (
-    <div className="rounded-xl bg-slate-100 px-2 py-1 text-xs font-semibold text-gray-500">
-      {content}
-    </div>
-  );
-};
+
 interface ProgressBarProps {
   min: number;
   max: number;
