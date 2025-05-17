@@ -4,6 +4,7 @@ import TotalCategory, {
   type TotalCategoryItem,
 } from "@/components/home/TotalCategory";
 import AddWishList from "@/components/home/AddWishList";
+import { PostModal } from "@/components/common/PostModal";
 
 function Home() {
   const dummy: WishListProps = {
@@ -59,6 +60,7 @@ function Home() {
       <PushTrash {...pushDummy} />
       <AddWishList />
       <TotalCategory items={totalDummy} />
+      <PostModal />
     </div>
   );
 }
