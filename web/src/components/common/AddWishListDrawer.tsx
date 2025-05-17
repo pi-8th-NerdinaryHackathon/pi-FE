@@ -11,28 +11,24 @@ import {
   DrawerClose,
 } from "@/components/ui/drawer";
 import { Minus, Plus } from "lucide-react";
-import { CommonButton } from "../common/CommonButton";
+import { CommonButton } from "./CommonButton";
 
-interface PushTrashDrawerProps {
+interface QuantityDrawerProps {
+  /* 드로어 버튼 라벨 (예: '장바구니 담기') */
   triggerLabel?: string;
   title?: string;
   description?: string;
   defaultQty?: number;
   onSubmit?: (qty: number) => void;
-  onClick: () => void;
-  category: string;
 }
 
-function PushTrashDrawer(props: PushTrashDrawerProps) {
-  const {
-    title = "제품 보내기",
-    description = "보내고 싶은 제품의 수량을 선택해주세요.",
-    defaultQty = 1,
-    onSubmit,
-    // onClick,
-    // category,
-  } = props;
-
+export default function QuantityDrawer({
+  triggerLabel = "열기",
+  title = "타이틀",
+  description = "설명을 여기에 넣으세요.",
+  defaultQty = 1,
+  onSubmit,
+}: QuantityDrawerProps) {
   const [qty, setQty] = useState(defaultQty);
 
   const increase = () => setQty((q) => q + 1);
@@ -46,15 +42,7 @@ function PushTrashDrawer(props: PushTrashDrawerProps) {
     <Drawer>
       {/* --- Drawer 열기 버튼 --- */}
       <DrawerTrigger asChild>
-        <button
-          onClick={() => props.onClick()}
-          className="flex w-full items-center justify-center gap-2.5 rounded-[1.875rem] bg-white py-3 shadow-[1px_3px_17px_rgba(17,24,39,0.08)]"
-        >
-          <img className="aspect-square h-9 w-9 object-fill" />
-          <p className="text-[18px] font-semibold">
-            모은 {props.category} 보내러가기
-          </p>
-        </button>
+        <CommonButton>{triggerLabel}</CommonButton>
       </DrawerTrigger>
 
       {/* --- Drawer 본문 --- */}
@@ -79,19 +67,12 @@ function PushTrashDrawer(props: PushTrashDrawerProps) {
 
         {/* 보내기 / 취소 */}
         <DrawerFooter>
+          <CommonButton onClick={handleSubmit}>보내기</CommonButton>
           <DrawerClose asChild>
             <CommonButton>취소</CommonButton>
           </DrawerClose>
-          <CommonButton
-            className="bg-[#0DAA80] text-white"
-            onClick={handleSubmit}
-          >
-            보내기
-          </CommonButton>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
   );
 }
-
-export default PushTrashDrawer;

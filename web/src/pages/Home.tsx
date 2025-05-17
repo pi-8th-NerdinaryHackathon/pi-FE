@@ -1,13 +1,18 @@
-import PushTrash, { type PushTrashProps } from "@/components/home/PushTrash";
-import TotalCategory, {
-  type TotalCategoryItem,
-} from "@/components/home/TotalCategory";
+import PushTrashDrawer from "@/components/home/PushTrash";
+import TotalCategory from "@/components/home/TotalCategory";
 import MainHeader from "@/components/layout/MainHeader";
 import PhotoIcon from "@/assets/icons/photo";
 import { useEffect, useRef, useState } from "react";
 import AddWishList from "@/components/home/AddWishList";
 import type { WishListProps } from "@/components/home/WIshList";
 import WishList from "@/components/home/WIshList";
+
+//헤이든
+import { useCategories } from "@/hooks/useCategories";
+import { postSearchByImage } from "@/apis/postSearchByImage";
+import { useNavigate } from "react-router-dom";
+
+//글렌
 import { getAllCategory } from "@/apis/getAllCategory.api";
 export interface Category {
   id: number;
@@ -18,6 +23,7 @@ export interface RawCategoryList {
   categories: Category[];
 }
 
+
 function parseCategories(raw: RawCategoryList): TotalCategoryItem[] {
   return raw.categories.map(({ id, name }) => ({
     category: name,
@@ -26,8 +32,14 @@ function parseCategories(raw: RawCategoryList): TotalCategoryItem[] {
   }));
 }
 function Home() {
+// 헤이든
+  const { data, loading, error } = useCategories();
+  const navigate = useNavigate();
+
+// 글렌
   const [isCategoryLoading, setIsCategoryLoading] = useState(false);
   const [categoryList, setCategoryList] = useState([]);
+
   const dummy: WishListProps = {
     category: ["플라스틱", "유리병"],
     company: "No plastic sunday",
@@ -51,9 +63,8 @@ function Home() {
     formData.append("image", file);
 
     try {
-      // TODO: 검색 결과 처리
-      // const { data } = await postSearchByImage(formData);
-      // console.log("search result 🔍", data);
+      const { data } = await postSearchByImage(formData);
+      navigate("/search", { state: { data } });
     } catch (err) {
       console.error("이미지 업로드 실패 ❌", err);
     } finally {
@@ -62,43 +73,11 @@ function Home() {
   };
 
   const pushDummy: PushTrashProps = {
-    onClick: () => console.log(12),
+    onClick: () => {},
     category: "플라스틱",
   };
-  const totalDummy: TotalCategoryItem[] = [
-    {
-      onClick: () => console.log("가방 카테고리 클릭"),
-      category: "가방",
-    },
-    {
-      onClick: () => console.log("의류 카테고리 클릭"),
-      category: "의류",
-    },
-    {
-      onClick: () => console.log("가구 카테고리 클릭"),
-      category: "가구",
-    },
-    {
-      onClick: () => console.log("악세사리 카테고리 클릭"),
-      category: "악세사리",
-    },
-    {
-      onClick: () => console.log("신발 카테고리 클릭"),
-      category: "신발",
-    },
-    {
-      onClick: () => console.log("주방용품 카테고리 클릭"),
-      category: "주방용품",
-    },
-    {
-      onClick: () => console.log("문구류 카테고리 클릭"),
-      category: "문구류",
-    },
-    {
-      onClick: () => console.log("장난감 카테고리 클릭"),
-      category: "장난감",
-    },
-  ];
+
+<!-- //글렌 -->
   useEffect(() => {
     async function fetchCategory() {
       setIsCategoryLoading(true);
@@ -114,19 +93,24 @@ function Home() {
 
     fetchCategory();
   }, []);
+
   return (
     <div className="flex h-full w-full flex-col gap-4 bg-slate-100 px-[18px]">
       <MainHeader />
-      {totalDummy.length > 0 ? (
+      {dummy.min !== null ? (
         <>
           <WishList {...dummy} />
-          <PushTrash {...pushDummy} />
+          <PushTrashDrawer {...pushDummy} />
         </>
       ) : (
         <AddWishList />
       )}
 
+<!-- //헤이든 -->
+      {!error && !loading && <TotalCategory items={data} />}
+<!-- //글렌 -->
       <TotalCategory items={categoryList} />
+
 
       <div
         className="fixed bottom-6 left-1/2 flex w-fit -translate-x-1/2 items-center gap-2 rounded-[30px] bg-black px-[28px] py-[14px] hover:cursor-pointer"
