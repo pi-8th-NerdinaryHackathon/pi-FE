@@ -7,12 +7,18 @@ import TestBtn from "@/components/common/testBtn";
 const AppRouter = createBrowserRouter([
   {
     path: path.base,
-    element: (
-      <Layout>
-        <Camera />
-        <TestBtn />
-      </Layout>
-    ),
+    element: <Layout />,
+    children: [
+      { index: true, element: <Camera /> },
+      {
+        path: path.search,
+        element: <div>Search</div>,
+      },
+      {
+        path: path.detail,
+        element: <div>detail</div>,
+      },
+    ],
   },
 ]);
 
