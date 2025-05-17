@@ -1,8 +1,11 @@
-import { getServerHelath } from "@/apis/getServerHealth.api";
+import {
+  getTestHeadServerHelath,
+  getServerHelath,
+} from "@/apis/getServerHealth.api";
 
 function TestBtn() {
   const handleServerHealth = () => {
-    getServerHelath();
+    getTestHeadServerHelath();
   };
   return (
     <button

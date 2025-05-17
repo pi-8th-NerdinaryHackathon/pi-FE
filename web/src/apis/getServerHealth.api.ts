@@ -5,3 +5,7 @@ export const getServerHelath = () => {
   const response = baseAPI.get(API_DOMAINS.GET_HELATH);
   return response;
 };
+export const getTestHeadServerHelath = () => {
+  const response = baseAPI.get(API_DOMAINS.TEST_SERVER);
+  return response;
+};
