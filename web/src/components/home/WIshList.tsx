@@ -49,7 +49,7 @@ function WishList(props: WishListProps) {
         </div>
       </div>
       <div className="flex flex-col gap-3 p-4">
-        <ProgressBarBox min={props.min} max={props.max} />
+        <ProgressBarBox min={props.min} max={props.max} price={props.price} />
       </div>
     </div>
   );

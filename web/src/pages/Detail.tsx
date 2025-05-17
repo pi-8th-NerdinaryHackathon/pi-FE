@@ -38,7 +38,7 @@ function Detail() {
 
         <hr />
 
-        <ProgressBarBox min={0} max={1300} />
+        <ProgressBarBox min={0} max={1300} price={0} />
 
         <div className="mt-4 flex flex-col items-center gap-3 rounded-[12px] bg-slate-200 px-4 py-5">
           <img width={36} height={36} />
@@ -68,7 +68,7 @@ function Detail() {
 
         <div className="flex w-full gap-[12px] py-[10px]">
           <Button text="위시리스트 담기" color="black" />
-          <Button text="구매하기" />
+          <Button text="구매하기" onClick={() => {}} />
         </div>
       </div>
     </div>

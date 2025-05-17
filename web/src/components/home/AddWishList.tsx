@@ -1,8 +1,7 @@
-import { ProgressBar } from "./WishList";
 import plus from "@/assets/icons/plus.svg";
 import { path } from "@/routes/path";
-import { formatWithCommas } from "@/utils/formatWithCommas";
 import { useNavigate } from "react-router-dom";
+import { ProgressBarBox } from "../common/ProgressBar";
 function AddWishList() {
   const navigate = useNavigate();
   return (
@@ -34,30 +33,11 @@ function AddWishList() {
             <p>내가 모은 재료</p>
             <p>필요한 재료</p>
           </div>
-          <ProgressBar />
+          <ProgressBarBox min={0} max={0} price={0} />
         </div>
       </div>
     </div>
   );
 }
-const ProgressBar = () => {
-  return (
-    <div className="w-full">
-      {/* 바 전체 컨테이너 */}
-      <div className="relative h-7 w-full overflow-hidden rounded-full bg-slate-200">
-        {/* 채워진 부분 */}
-        <div
-          className="absolute top-0 left-0 h-full rounded-full bg-[#39BF9B]"
-          style={{ width: `${0}%` }}
-        />
-      </div>
 
-      {/* 아래 레이블: min / max */}
-      <div className="mt-1 flex justify-between text-xs font-medium text-gray-500">
-        <span className="text-[#39BF9B]">0</span>
-        <span>{formatWithCommas(1000)}</span>
-      </div>
-    </div>
-  );
-};
 export default AddWishList;
