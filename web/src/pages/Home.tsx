@@ -7,6 +7,7 @@ import AddWishList from "@/components/home/AddWishList";
 import type { WishListProps } from "@/components/home/WIshList";
 import WishList from "@/components/home/WIshList";
 import { useCategories } from "@/hooks/useCategories";
+import { postSearchByImage } from "@/apis/postSearchByImage";
 
 function Home() {
   const { data, loading, error } = useCategories();
@@ -34,9 +35,8 @@ function Home() {
     formData.append("image", file);
 
     try {
-      // TODO: 검색 결과 처리
-      // const { data } = await postSearchByImage(formData);
-      // console.log("search result 🔍", data);
+      const { data } = await postSearchByImage(formData);
+      console.log("search result 🔍", data);
     } catch (err) {
       console.error("이미지 업로드 실패 ❌", err);
     } finally {
@@ -45,7 +45,7 @@ function Home() {
   };
 
   const pushDummy: PushTrashProps = {
-    onClick: () => console.log(12),
+    onClick: () => {},
     category: "플라스틱",
   };
 

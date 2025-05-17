@@ -17,17 +17,17 @@ function LeftIcon(props: LeftIconProps) {
       <path
         d="M20 24L12 16L20 8"
         stroke="#374151"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M20 24L12 16L20 8"
         stroke="black"
-        stroke-opacity="0.2"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeOpacity="0.2"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
