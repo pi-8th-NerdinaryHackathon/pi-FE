@@ -1,10 +1,12 @@
 export interface CategroyProps {
   content: string;
-  className: string;
+  className?: string;
 }
 export const Category = ({ content, className }: CategroyProps) => {
   return (
-    <div className={`rounded-xl px-2 py-1 text-xs font-semibold ${className}`}>
+    <div
+      className={`flex items-center rounded-xl px-[9px] py-[1px] text-xs font-semibold ${className}`}
+    >
       {content}
     </div>
   );

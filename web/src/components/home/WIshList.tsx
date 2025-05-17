@@ -1,6 +1,7 @@
 import next from "@/assets/icons/next.svg";
 import { formatWithCommas } from "@/utils/formatWithCommas";
 import { Category } from "../common/Category";
+import { ProgressBarBox } from "../common/ProgressBar";
 export interface WishListProps {
   category: string[];
   company: string;
@@ -49,13 +50,8 @@ function WishList(props: WishListProps) {
         </div>
       </div>
       <div className="flex flex-col gap-3 p-4">
-        <div className="flex flex-col gap-1.5">
-          <div className="flex justify-between text-xs font-medium text-gray-500">
-            <p>내가 모은 플라스틱</p>
-            <p>필요한 플라스틱</p>
-          </div>
-          <ProgressBar min={props.min} max={props.max} />
-        </div>
+        <ProgressBarBox min={props.min} max={props.max} />
+
         <div className="flex">
           <button>
             <img src={next} className="h-4 w-4 text-gray-500" />
@@ -70,33 +66,5 @@ function WishList(props: WishListProps) {
     </div>
   );
 }
-
-interface ProgressBarProps {
-  min: number;
-  max: number;
-}
-
-const ProgressBar = ({ min, max }: ProgressBarProps) => {
-  // 0~100 사이로 클램프
-  const percent = Math.max(15, (min / max) * 100).toFixed(0);
-  return (
-    <div className="w-full">
-      {/* 바 전체 컨테이너 */}
-      <div className="relative h-7 w-full overflow-hidden rounded-full bg-slate-200">
-        {/* 채워진 부분 */}
-        <div
-          className="absolute top-0 left-0 h-full rounded-full bg-[#39BF9B]"
-          style={{ width: `${percent}%` }}
-        />
-      </div>
-
-      {/* 아래 레이블: min / max */}
-      <div className="mt-1 flex justify-between text-sm font-semibold text-gray-600">
-        <span className="text-[#39BF9B]">{min.toLocaleString()}</span>
-        <span>{max.toLocaleString()}</span>
-      </div>
-    </div>
-  );
-};
 
 export default WishList;

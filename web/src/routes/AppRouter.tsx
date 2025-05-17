@@ -4,6 +4,7 @@ import { path } from "./path";
 import { Layout } from "@/components/layout/Layout";
 import SearchPage from "@/pages/Search";
 import DefaultPage from "@/pages/Default";
+import Detail from "@/pages/Detail";
 
 const AppRouter = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const AppRouter = createBrowserRouter([
       },
       {
         path: path.detail,
-        element: <div>detail</div>,
+        element: <Detail />,
       },
     ],
   },
