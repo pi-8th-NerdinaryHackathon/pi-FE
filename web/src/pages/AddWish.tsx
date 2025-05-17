@@ -22,11 +22,10 @@ function parseProducts(rawList: RawProduct[]): ItemBoxProps[] {
     company: product.company.name,
     title: product.name,
     price: product.price,
-    onClick: () => console.log(`${product.name} 클릭`),
+    onClick: () => (window.location.href = `/detail/${product.id}`),
   }));
 }
 function AddWish() {
-  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState<ItemBoxProps[]>([]);
   useEffect(() => {
@@ -56,11 +55,7 @@ function AddWish() {
       </div>
       <div className="grid h-fit w-full grid-cols-2 justify-items-center">
         {products.map((item, index) => (
-          <ItemBox
-            key={`${item.title}-${index}`}
-            {...item}
-            onClick={() => navigate(path.base)}
-          />
+          <ItemBox key={`${item.title}-${index}`} {...item} />
         ))}
       </div>
     </div>

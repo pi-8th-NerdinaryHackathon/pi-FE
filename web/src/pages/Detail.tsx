@@ -4,40 +4,60 @@ import { ProgressBarBox } from "@/components/common/ProgressBarBox";
 import BackHeader from "@/components/layout/BackHeader";
 import { REQUIRED_TRASH } from "@/constants/required-trash";
 import { formatWithCommas } from "@/utils/formatWithCommas";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { getProductDetail } from "@/apis/getProductDetail.api";
 
 function Detail() {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
+  const { id } = useParams();
+  const [isLoading, setIsLoading] = useState(false);
+  const [products, setProducts] = useState();
+  useEffect(() => {
+    async function fetchProducts() {
+      setIsLoading(true);
+      try {
+        const rawList = await getProductDetail(id); // RawProduct[]
+        setProducts(rawList.data);
+      } catch (error) {
+        console.error("상품 불러오기 실패", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchProducts();
+  }, []); // 빈 배열: 마운트 시 한 번만 실행
   return (
     <div>
       <BackHeader
-        title={<p className="py-[19px] text-[18px] font-bold">제품 상세</p>}
+        title={
+          <p className="py-[19px] text-[18px] font-bold">{products?.name}</p>
+        }
       />
 
       <div className="flex flex-col gap-5 px-[18px]">
-        <img src="" className="mb-1 aspect-square w-full rounded-2xl" />
+        <img
+          src={products?.image}
+          className="mb-1 aspect-square w-full rounded-2xl"
+        />
 
         <div>
           <div className="mb-2 flex gap-1">
             <Category
-              content={"제품 상세"}
-              className="bg-slate-100 text-gray-500"
-            />
-            <Category
-              content={"제품 상세"}
+              content={products?.category?.name}
               className="bg-slate-100 text-gray-500"
             />
           </div>
 
           <div className="ml-1">
             <p className="mb-1 text-[13px] font-medium text-[#6B7280]">
-              No plastic sunday
+              {products?.company?.name}
             </p>
-            <p className="mb-5 text-[20px] font-bold">럭키 키링</p>
+            <p className="mb-5 text-[20px] font-bold">{products?.name}</p>
             <p className="text-[24px] font-semibold">
-              {formatWithCommas(10000)}원
+              {formatWithCommas(products?.price)}원
             </p>
           </div>
         </div>
