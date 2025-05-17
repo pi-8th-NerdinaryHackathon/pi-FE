@@ -19,7 +19,8 @@ export default function RootLayout() {
     return null;
   }
 
-  const host =
+  const host = 
+  // "https://pi-k3ob7s8fj-hin6150s-projects.vercel.app/"
   Platform.OS === 'android'
     ? 'http://10.0.2.2:5173' 
     : 'http://localhost:5173';
