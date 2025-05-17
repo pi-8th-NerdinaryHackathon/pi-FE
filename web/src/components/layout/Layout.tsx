@@ -5,7 +5,7 @@ import SearchIcon from "@/assets/icons/search";
 export function Layout() {
   return (
     <div className="flex min-h-screen justify-center bg-gray-100">
-      <div className="flex min-h-screen w-full max-w-[768px] flex-col bg-white shadow-lg">
+      <div className="flex min-h-screen w-full max-w-[768px] flex-col bg-slate-100 shadow-lg">
         <header className="bg-white shadow-sm">
           <div className="flex h-14 items-center justify-between px-4">
             <NavLink
