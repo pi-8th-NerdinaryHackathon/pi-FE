@@ -1,0 +1,25 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+@import 'tailwindcss';
+
+@theme {
+  --color-neutral-100: #000000;
+
+  --color-neutral-0: #ffffff;
+}
+
+@layer base {
+  html,
+  body {
+    font-family: 'Pretendard', sans-serif;
+  }
+  button {
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+  }
+}
+@layer components {
+  .layout {
+    @apply flex h-screen max-w-[540px] flex-col items-center;
+  }
+}
