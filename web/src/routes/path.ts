@@ -3,4 +3,5 @@ export const path = {
   search: "/search",
   list: "/list",
   detail: "/detail",
+  add: "/add",
 };

@@ -1,8 +1,9 @@
-import WishList, { type WishListProps } from "@/components/home/WIshList";
+import WishList, { type WishListProps } from "@/components/home/WishList";
 import PushTrash, { type PushTrashProps } from "@/components/home/PushTrash";
 import TotalCategory, {
   type TotalCategoryItem,
 } from "@/components/home/TotalCategory";
+import AddWishList from "@/components/home/AddWishList";
 
 function Home() {
   const dummy: WishListProps = {
@@ -53,9 +54,10 @@ function Home() {
     },
   ];
   return (
-    <div className="flex h-full w-full flex-col gap-4">
+    <div className="flex h-full w-full flex-col gap-4 bg-slate-100 p-4">
       <WishList {...dummy} />
       <PushTrash {...pushDummy} />
+      <AddWishList />
       <TotalCategory items={totalDummy} />
     </div>
   );
