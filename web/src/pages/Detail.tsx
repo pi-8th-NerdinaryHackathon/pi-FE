@@ -2,6 +2,7 @@ import { Category } from "@/components/common/Category";
 import { PostModal } from "@/components/common/PostModal";
 import { ProgressBarBox } from "@/components/common/ProgressBarBox";
 import BackHeader from "@/components/layout/BackHeader";
+import { REQUIRED_TRASH } from "@/constants/required-trash";
 import { formatWithCommas } from "@/utils/formatWithCommas";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -44,32 +45,7 @@ function Detail() {
         <hr />
 
         <ProgressBarBox min={0} max={1300} price={0} />
-
-        <div className="mt-4 flex flex-col items-center gap-3 rounded-[12px] bg-slate-200 px-4 py-5">
-          <img width={36} height={36} />
-          <div className="mb-1 flex gap-1 text-[18px] font-semibold">
-            <p className="">재활용할</p>
-            <Category
-              content={"플라스틱"}
-              className="bg-slate-700 text-white"
-            />
-            <p>{formatWithCommas(1000)}개가 필요해요.</p>
-          </div>
-
-          <div className="flex w-full flex-col items-center gap-[10px] rounded-[12px] bg-white py-4">
-            <p className="text-[15px] font-medium">
-              깨끗한 철 제품을 모아주세요!
-            </p>
-
-            <ul className="list-inside list-disc text-[#6B7280]">
-              <li>페트병</li>
-              <li>페트병</li>
-              <li>페트병</li>
-              <li>페트병</li>
-              <li>페트병</li>
-            </ul>
-          </div>
-        </div>
+        <RequiredTrash trash={"iron"} count={1000} />
 
         <div className="flex w-full gap-[12px] py-[10px]">
           <Button text="위시리스트 담기" color="black" />
@@ -104,6 +80,39 @@ function Button(props: ButtonProps) {
     >
       {text}
     </button>
+  );
+}
+
+interface RequiredTrashProps {
+  trash: string;
+  count: number;
+}
+
+function RequiredTrash(props: RequiredTrashProps) {
+  const { trash = "iron", count } = props;
+
+  const trashData = REQUIRED_TRASH.find((item) => item.key === trash) ?? null;
+
+  return (
+    <div className="mt-4 flex flex-col items-center gap-3 rounded-[12px] bg-slate-200 px-4 py-5">
+      <img width={36} height={36} />
+      <div className="mb-1 flex gap-1 text-[18px] font-semibold">
+        <p className="">재활용할</p>
+        <Category
+          content={trashData?.name ?? ""}
+          className="bg-slate-700 px-[9px] text-white"
+        />
+        <p>{formatWithCommas(count)}개가 필요해요.</p>
+      </div>
+
+      <div className="flex w-full flex-col items-center gap-[10px] rounded-[12px] bg-white py-4">
+        <p className="text-[15px] font-medium">깨끗한 철 제품을 모아주세요!</p>
+
+        <ul className="list-inside list-disc text-center text-[#6B7280]">
+          {trashData?.list.map((item, index) => <li key={index}>{item}</li>)}
+        </ul>
+      </div>
+    </div>
   );
 }
 
