@@ -1,7 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { path } from "@/routes/path";
 import SearchIcon from "@/assets/icons/search";
-
 export function Layout() {
   return (
     <div className="flex min-h-screen justify-center bg-gray-100">
