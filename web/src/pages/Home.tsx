@@ -8,9 +8,11 @@ import type { WishListProps } from "@/components/home/WIshList";
 import WishList from "@/components/home/WIshList";
 import { useCategories } from "@/hooks/useCategories";
 import { postSearchByImage } from "@/apis/postSearchByImage";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const { data, loading, error } = useCategories();
+  const navigate = useNavigate();
 
   const dummy: WishListProps = {
     category: ["플라스틱", "유리병"],
@@ -36,7 +38,7 @@ function Home() {
 
     try {
       const { data } = await postSearchByImage(formData);
-      console.log("search result 🔍", data);
+      navigate("/search", { state: { data } });
     } catch (err) {
       console.error("이미지 업로드 실패 ❌", err);
     } finally {
