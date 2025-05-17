@@ -6,11 +6,9 @@ import { useEffect, useRef, useState } from "react";
 import AddWishList from "@/components/home/AddWishList";
 import type { WishListProps } from "@/components/home/WIshList";
 import WishList from "@/components/home/WIshList";
-
-//헤이든
-import { useCategories } from "@/hooks/useCategories";
-import { postSearchByImage } from "@/apis/postSearchByImage";
 import { useNavigate } from "react-router-dom";
+
+import { postSearchByImage } from "@/apis/postSearchByImage";
 
 //글렌
 import { getAllCategory } from "@/apis/getAllCategory.api";
@@ -23,7 +21,6 @@ export interface RawCategoryList {
   categories: Category[];
 }
 
-
 function parseCategories(raw: RawCategoryList): TotalCategoryItem[] {
   return raw.categories.map(({ id, name }) => ({
     category: name,
@@ -32,14 +29,10 @@ function parseCategories(raw: RawCategoryList): TotalCategoryItem[] {
   }));
 }
 function Home() {
-// 헤이든
-  const { data, loading, error } = useCategories();
-  const navigate = useNavigate();
-
-// 글렌
   const [isCategoryLoading, setIsCategoryLoading] = useState(false);
-  const [categoryList, setCategoryList] = useState([]);
+  const [categoryList, setCategoryList] = useState();
 
+  const navigate = useNavigate();
   const dummy: WishListProps = {
     category: ["플라스틱", "유리병"],
     company: "No plastic sunday",
@@ -53,6 +46,10 @@ function Home() {
 
   const handleDivClick = () => {
     fileInputRef.current?.click();
+  };
+  const pushDummy: PushTrashProps = {
+    onClick: () => {},
+    category: "플라스틱",
   };
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,12 +69,6 @@ function Home() {
     }
   };
 
-  const pushDummy: PushTrashProps = {
-    onClick: () => {},
-    category: "플라스틱",
-  };
-
-<!-- //글렌 -->
   useEffect(() => {
     async function fetchCategory() {
       setIsCategoryLoading(true);
@@ -106,11 +97,7 @@ function Home() {
         <AddWishList />
       )}
 
-<!-- //헤이든 -->
-      {!error && !loading && <TotalCategory items={data} />}
-<!-- //글렌 -->
       <TotalCategory items={categoryList} />
-
 
       <div
         className="fixed bottom-6 left-1/2 flex w-fit -translate-x-1/2 items-center gap-2 rounded-[30px] bg-black px-[28px] py-[14px] hover:cursor-pointer"
