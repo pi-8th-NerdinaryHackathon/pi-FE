@@ -6,6 +6,7 @@ import SearchPage from "@/pages/Search";
 import Detail from "@/pages/Detail";
 import AddWish from "@/pages/AddWish";
 import Home from "@/pages/Home";
+import CatrgoryItemList from "@/pages/CategoryItemList";
 
 const AppRouter = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const AppRouter = createBrowserRouter([
       {
         path: path.add,
         element: <AddWish />,
+      },
+      {
+        path: path.category,
+        element: <CatrgoryItemList />,
       },
     ],
   },

@@ -1,11 +1,12 @@
 import SearchIcon from "@/assets/icons/search";
 import { path } from "@/routes/path";
 import { NavLink } from "react-router-dom";
+import BN from "@/assets/icons/BN.svg";
 
 function MainHeader() {
   return (
     <header>
-      <div className="flex h-14 items-center justify-between px-4">
+      <div className="flex h-15 items-center justify-between px-4 py-2">
         <NavLink
           to={path.base}
           className={({ isActive }) =>
@@ -13,7 +14,7 @@ function MainHeader() {
           }
           end
         >
-          <h1 className="text-primary-600 text-lg font-bold">MyStore</h1>
+          <img src={BN} />
         </NavLink>
 
         <NavLink to={path.search}>

@@ -4,12 +4,30 @@ import TotalCategory, {
 } from "@/components/home/TotalCategory";
 import MainHeader from "@/components/layout/MainHeader";
 import PhotoIcon from "@/assets/icons/photo";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import AddWishList from "@/components/home/AddWishList";
 import type { WishListProps } from "@/components/home/WIshList";
 import WishList from "@/components/home/WIshList";
+import { getAllCategory } from "@/apis/getAllCategory.api";
+export interface Category {
+  id: number;
+  name: string;
+}
 
+export interface RawCategoryList {
+  categories: Category[];
+}
+
+function parseCategories(raw: RawCategoryList): TotalCategoryItem[] {
+  return raw.categories.map(({ id, name }) => ({
+    category: name,
+    // 클릭 핸들러는 여기서 정의
+    onClick: () => (window.location.href = `category/${id}`),
+  }));
+}
 function Home() {
+  const [isCategoryLoading, setIsCategoryLoading] = useState(false);
+  const [categoryList, setCategoryList] = useState([]);
   const dummy: WishListProps = {
     category: ["플라스틱", "유리병"],
     company: "No plastic sunday",
@@ -81,6 +99,21 @@ function Home() {
       category: "장난감",
     },
   ];
+  useEffect(() => {
+    async function fetchCategory() {
+      setIsCategoryLoading(true);
+      try {
+        const rawList = await getAllCategory();
+        setCategoryList(parseCategories(rawList.data));
+      } catch (error) {
+        console.error("카테고리 불러오기 실패", error);
+      } finally {
+        setIsCategoryLoading(false);
+      }
+    }
+
+    fetchCategory();
+  }, []);
   return (
     <div className="flex h-full w-full flex-col gap-4 bg-slate-100 px-[18px]">
       <MainHeader />
@@ -93,7 +126,7 @@ function Home() {
         <AddWishList />
       )}
 
-      <TotalCategory items={totalDummy} />
+      <TotalCategory items={categoryList} />
 
       <div
         className="fixed bottom-6 left-1/2 flex w-fit -translate-x-1/2 items-center gap-2 rounded-[30px] bg-black px-[28px] py-[14px] hover:cursor-pointer"
