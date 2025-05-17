@@ -11,7 +11,6 @@ export interface WishListProps {
   max: number;
 }
 function WishList(props: WishListProps) {
-  const percent = (props?.min / props?.max) * 100;
   return (
     <div className="flex h-fit flex-col overflow-hidden rounded-[1.25rem] bg-white">
       <div className="flex w-full justify-between bg-[#0DAA80] px-[1.125rem] py-3">
@@ -51,17 +50,6 @@ function WishList(props: WishListProps) {
       </div>
       <div className="flex flex-col gap-3 p-4">
         <ProgressBarBox min={props.min} max={props.max} />
-
-        <div className="flex">
-          <button>
-            <img src={next} className="h-4 w-4 text-gray-500" />
-          </button>
-          <h2 className="text-sm font-semibold text-gray-900">
-            지금까지{" "}
-            {formatWithCommas(((props?.price * percent) / 100).toFixed(0))}원
-            할인받을 수 있어요.
-          </h2>
-        </div>
       </div>
     </div>
   );

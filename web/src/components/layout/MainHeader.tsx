@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 function MainHeader() {
   return (
-    <header className="bg-white shadow-sm">
+    <header>
       <div className="flex h-14 items-center justify-between px-4">
         <NavLink
           to={path.base}
