@@ -1,9 +1,14 @@
 import { Category } from "@/components/common/Category";
+import { PostModal } from "@/components/common/PostModal";
 import { ProgressBarBox } from "@/components/common/ProgressBarBox";
 import BackHeader from "@/components/layout/BackHeader";
 import { formatWithCommas } from "@/utils/formatWithCommas";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Detail() {
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
   return (
     <div>
       <BackHeader
@@ -68,9 +73,18 @@ function Detail() {
 
         <div className="flex w-full gap-[12px] py-[10px]">
           <Button text="위시리스트 담기" color="black" />
-          <Button text="구매하기" onClick={() => {}} />
+          <Button text="구매하기" onClick={() => setShowModal(true)} />
         </div>
       </div>
+
+      {showModal && (
+        <PostModal
+          onClose={() => {
+            setShowModal(false);
+            navigate("/");
+          }}
+        />
+      )}
     </div>
   );
 }
