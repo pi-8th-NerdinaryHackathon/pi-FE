@@ -1,5 +1,5 @@
 import { Category } from "@/components/common/Category";
-import { ProgressBarBox } from "@/components/common/ProgressBar";
+import { ProgressBarBox } from "@/components/common/ProgressBarBox";
 import BackHeader from "@/components/layout/BackHeader";
 import { formatWithCommas } from "@/utils/formatWithCommas";
 

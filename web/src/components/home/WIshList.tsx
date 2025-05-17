@@ -1,7 +1,7 @@
 import next from "@/assets/icons/next.svg";
 import { formatWithCommas } from "@/utils/formatWithCommas";
 import { Category } from "../common/Category";
-import { ProgressBarBox } from "../common/ProgressBar";
+import { ProgressBarBox } from "../common/ProgressBarBox";
 export interface WishListProps {
   category: string[];
   company: string;

@@ -1,7 +1,7 @@
 import plus from "@/assets/icons/plus.svg";
 import { path } from "@/routes/path";
 import { useNavigate } from "react-router-dom";
-import { ProgressBarBox } from "../common/ProgressBar";
+import { ProgressBarBox } from "../common/ProgressBarBox";
 function AddWishList() {
   const navigate = useNavigate();
   return (
