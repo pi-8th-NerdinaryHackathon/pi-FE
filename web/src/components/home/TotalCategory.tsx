@@ -8,7 +8,7 @@ interface TotalCategoryProps {
 }
 function TotalCategory(props: TotalCategoryProps) {
   return (
-    <div className="flex flex-col gap-5">
+    <div className="mt-12 flex flex-col gap-5">
       <h1 className="text-xl font-bold text-gray-950">
         업사이클링 제품 카테고리
       </h1>

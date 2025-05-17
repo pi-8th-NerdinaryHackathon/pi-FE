@@ -9,7 +9,7 @@ function AddWishList() {
       onClick={() => {
         navigate(path.add);
       }}
-      className="flex h-fit flex-col overflow-hidden rounded-[1.25rem] bg-white"
+      className="flex h-fit flex-col overflow-hidden rounded-[1.25rem] bg-white shadow-md"
     >
       <div className="flex w-full justify-between bg-[#0DAA80] px-[1.125rem] py-3">
         <h1 className="text-[1.125rem] font-bold text-white">
@@ -29,10 +29,6 @@ function AddWishList() {
       </div>
       <div className="flex flex-col gap-3 p-4">
         <div className="flex flex-col gap-1.5">
-          <div className="flex justify-between text-xs font-medium text-gray-500">
-            <p>내가 모은 재료</p>
-            <p>필요한 재료</p>
-          </div>
           <ProgressBarBox min={0} max={0} price={0} />
         </div>
       </div>

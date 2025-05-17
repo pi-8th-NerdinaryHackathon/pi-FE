@@ -5,17 +5,18 @@ interface ProgressBarProps {
   min: number;
   max: number;
   price: number;
+  ingrediment?: string;
 }
 
 export function ProgressBarBox(props: ProgressBarProps) {
-  const { min, max, price } = props;
+  const { min, max, price, ingrediment = "재료" } = props;
   const percent = min === 0 ? 0 : Math.max(15, (min / max) * 100).toFixed(0);
 
   return (
     <div className="flex flex-col gap-1.5">
       <div className="flex justify-between text-xs font-medium text-gray-500">
-        <p className="text-[13px]">내가 모은 플라스틱</p>
-        <p className="text[13px]">필요한 플라스틱</p>
+        <p className="text-[13px]">내가 모은 {ingrediment}</p>
+        <p className="text[13px]">필요한 {ingrediment}</p>
       </div>
 
       <div className="w-full">
