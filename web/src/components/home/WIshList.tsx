@@ -35,16 +35,16 @@ function WishList(props: WishListProps) {
             />
           </div>
           <h3 className="mt-2 text-xs font-medium text-gray-500">
-            No plastic sunday
+            {props?.company}
           </h3>
           <div className="flex gap-0.5">
-            <h2 className="text-xl font-bold text-gray-900">럭키 키링</h2>
+            <h2 className="text-xl font-bold text-gray-900">{props?.title}</h2>
             <button>
               <img src={next} className="h-6 w-6 text-slate-200" />
             </button>
           </div>
           <h3 className="text-[1.125rem] font-semibold text-gray-900">
-            {formatWithCommas(13000)}원
+            {formatWithCommas(props?.price)}원
           </h3>
         </div>
       </div>

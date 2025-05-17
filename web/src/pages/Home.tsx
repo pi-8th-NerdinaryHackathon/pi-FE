@@ -1,4 +1,4 @@
-import WishList, { type WishListProps } from "@/components/home/WIshList";
+import WishList, { type WishListProps } from "@/components/home/WishList";
 import PushTrash, { type PushTrashProps } from "@/components/home/PushTrash";
 import TotalCategory, {
   type TotalCategoryItem,
@@ -6,6 +6,7 @@ import TotalCategory, {
 import MainHeader from "@/components/layout/MainHeader";
 import PhotoIcon from "@/assets/icons/photo";
 import { useRef } from "react";
+import AddWishList from "@/components/home/AddWishList";
 
 function Home() {
   const dummy: WishListProps = {
@@ -84,6 +85,7 @@ function Home() {
       <MainHeader />
       <WishList {...dummy} />
       <PushTrash {...pushDummy} />
+      <AddWishList />
       <TotalCategory items={totalDummy} />
       <div
         className="fixed bottom-6 left-1/2 flex w-fit -translate-x-1/2 items-center gap-2 rounded-[30px] bg-black px-[28px] py-[14px] hover:cursor-pointer"
