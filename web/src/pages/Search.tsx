@@ -46,8 +46,8 @@ function SearchPage() {
           <p className="text-center text-gray-400">검색 결과가 없습니다.</p>
         )}
         <div className="space-y-2">
-          {data.map((item) => (
-            <li key={item.id} className="rounded-lg bg-white p-4 shadow-sm">
+          {data.map((item, idx) => (
+            <li key={idx} className="rounded-lg bg-white p-4 shadow-sm">
               <ItemBox
                 img={""}
                 category={[]}

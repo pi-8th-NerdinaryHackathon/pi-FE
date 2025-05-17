@@ -1,3 +1,4 @@
+import { CommonButton } from "@/components/common/CommonButton";
 import { Category } from "@/components/common/Category";
 import { PostModal } from "@/components/common/PostModal";
 import { ProgressBarBox } from "@/components/common/ProgressBarBox";
@@ -48,8 +49,15 @@ function Detail() {
         <RequiredTrash trash={"iron"} count={1000} />
 
         <div className="flex w-full gap-[12px] py-[10px]">
-          <Button text="위시리스트 담기" color="black" />
-          <Button text="구매하기" onClick={() => setShowModal(true)} />
+          <CommonButton className="bg-black text-white">
+            위시리스트 담기
+          </CommonButton>
+          <CommonButton
+            className="bg-[#0DAA80] text-white"
+            onClick={() => setShowModal(true)}
+          >
+            구매하기
+          </CommonButton>
         </div>
       </div>
 
@@ -62,24 +70,6 @@ function Detail() {
         />
       )}
     </div>
-  );
-}
-
-interface ButtonProps {
-  text: string;
-  color?: string;
-  onClick?: () => void;
-}
-
-function Button(props: ButtonProps) {
-  const { text, color = "[#0DAA80]", onClick } = props;
-  return (
-    <button
-      className={`flex-1 rounded-[30px] bg-${color} py-[19px] text-white hover:cursor-pointer`}
-      onClick={onClick}
-    >
-      {text}
-    </button>
   );
 }
 

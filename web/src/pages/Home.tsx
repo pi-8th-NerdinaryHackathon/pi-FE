@@ -1,4 +1,4 @@
-import PushTrash, { type PushTrashProps } from "@/components/home/PushTrash";
+import PushTrashDrawer from "@/components/home/PushTrash";
 import TotalCategory from "@/components/home/TotalCategory";
 import MainHeader from "@/components/layout/MainHeader";
 import PhotoIcon from "@/assets/icons/photo";
@@ -57,7 +57,7 @@ function Home() {
       {dummy.min !== null ? (
         <>
           <WishList {...dummy} />
-          <PushTrash {...pushDummy} />
+          <PushTrashDrawer {...pushDummy} />
         </>
       ) : (
         <AddWishList />
