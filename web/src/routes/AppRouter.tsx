@@ -3,6 +3,7 @@ import { path } from "./path";
 
 import { Layout } from "@/components/layout/Layout";
 import SearchPage from "@/pages/Search";
+import Detail from "@/pages/Detail";
 import DefaultPage from "@/pages/Default";
 import AddWish from "@/pages/AddWish";
 import Home from "@/pages/Home";
@@ -23,7 +24,7 @@ const AppRouter = createBrowserRouter([
       },
       {
         path: path.detail,
-        element: <div>detail</div>,
+        element: <Detail />,
       },
       {
         path: path.add,
