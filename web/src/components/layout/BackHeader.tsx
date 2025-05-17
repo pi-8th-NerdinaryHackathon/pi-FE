@@ -13,7 +13,7 @@ function BackHeader(props: BackHeaderProps) {
   const { title, linkPath = path.base } = props;
 
   return (
-    <div className="flex w-full items-center px-4">
+    <div className="flex w-full items-center gap-2 px-4">
       <Link to={linkPath}>
         <LeftIcon />
       </Link>
