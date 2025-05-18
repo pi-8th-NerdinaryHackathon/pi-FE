@@ -8,6 +8,7 @@ import type { WishListProps } from "@/components/home/WIshList";
 import WishList from "@/components/home/WIshList";
 import { useNavigate } from "react-router-dom";
 import intro from "@/assets/intro.png";
+import febric from "@/assets/icons/febric.svg";
 
 import { postSearchByImage } from "@/apis/postSearchByImage";
 
@@ -35,13 +36,13 @@ function Home() {
   const [categoryList, setCategoryList] = useState<CategoryProps[]>([]);
 
   const navigate = useNavigate();
-  const dummy: WishListProps = {
-    category: ["플라스틱", "유리병"],
-    company: "No plastic sunday",
-    title: "럭키 키링",
-    price: 13000,
+  const data: WishListProps = {
+    category: ["면직물"],
+    company: "예시 주식회사",
+    title: "B 가방",
+    price: 18900,
     min: 100,
-    max: 1980,
+    max: 1300,
   };
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -51,7 +52,7 @@ function Home() {
   };
   const pushDummy: PushTrashProps = {
     onClick: () => {},
-    category: "플라스틱",
+    category: "면직물",
   };
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -91,9 +92,9 @@ function Home() {
     <div className="flex h-full w-full flex-col gap-4 bg-slate-100">
       <div className="flex h-full w-full flex-col gap-4 px-[18px]">
         <MainHeader />
-        {dummy.min !== null ? (
+        {data.min !== null ? (
           <>
-            <WishList {...dummy} />
+            <WishList {...data} />
             <PushTrashDrawer {...pushDummy} />
           </>
         ) : (
@@ -113,7 +114,7 @@ function Home() {
         onClick={handleDivClick}
       >
         <PhotoIcon width="24" height="24" />
-        <p className="text-[15px] font-semibold text-white">
+        <p className="line-clamp-1 text-[15px] font-semibold text-white">
           사진으로 검색하기
         </p>
 

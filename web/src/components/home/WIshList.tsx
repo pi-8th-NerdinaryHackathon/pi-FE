@@ -2,6 +2,7 @@ import next from "@/assets/icons/next.svg";
 import { formatWithCommas } from "@/utils/formatWithCommas";
 import { Category } from "../common/Category";
 import { ProgressBarBox } from "../common/ProgressBarBox";
+import febric from "@/assets/bag_2.jpeg";
 export interface WishListProps {
   category: string[];
   company: string;
@@ -22,17 +23,13 @@ function WishList(props: WishListProps) {
         </button>
       </div>
       <div className="flex w-full gap-3 border-b border-b-[#eaeaea] p-4">
-        <img className="aspect-square h-34 w-34 rounded-2xl object-fill" />
+        <img
+          src={febric}
+          className="aspect-square h-34 w-34 rounded-2xl object-fill"
+        />
         <div className="flex flex-col">
           <div className="flex h-fit w-full flex-wrap gap-1">
-            <Category
-              content="플라스틱"
-              className="bg-slate-100 text-gray-500"
-            />
-            <Category
-              content="공예제품"
-              className="bg-slate-100 text-gray-500"
-            />
+            <Category content="면직물" className="bg-slate-100 text-gray-500" />
           </div>
           <h3 className="mt-2 text-xs font-medium text-gray-500">
             {props?.company}
