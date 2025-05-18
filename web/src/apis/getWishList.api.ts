@@ -1,12 +1,10 @@
 import { baseAPI } from "@/apis/instance";
 import { API_DOMAINS } from "@/constants/api";
+import { generateApiPath } from "@/utils/generateApiPath";
 
 export const getSearchProduct = (search: string) => {
-  const encodedSearch = encodeURIComponent(search);
-
   const response = baseAPI.get(
-    API_DOMAINS.GET_SEARCH_BY_TEXT + "?search=" + encodedSearch,
+    generateApiPath(API_DOMAINS.GET_SEARCH_BY_TEXT, { search }),
   );
-
   return response;
 };

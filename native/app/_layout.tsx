@@ -31,10 +31,10 @@ export default function RootLayout() {
   }
 
   const host = 
-  // "https://pi-k3ob7s8fj-hin6150s-projects.vercel.app/"
-  Platform.OS === 'android'
-    ? 'http://10.0.2.2:5173' 
-    : 'http://localhost:5173';
+  "https://pi-k3ob7s8fj-hin6150s-projects.vercel.app/"
+  // Platform.OS === 'android'
+  //   ? 'http://10.0.2.2:5173' 
+  //   : 'http://localhost:5173';
   
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>

@@ -10,6 +10,7 @@ export interface ItemBoxProps {
   onClick: () => void;
   isLoading?: boolean;
 }
+
 function ItemBox(props: ItemBoxProps) {
   if (props.isLoading) {
     return (

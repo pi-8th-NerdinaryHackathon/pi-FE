@@ -1,6 +1,7 @@
 // src/utils/api.ts
 import { uuidv4 } from "@/utils/uuidv4";
 import axios, { type InternalAxiosRequestConfig } from "axios";
+import { postUser } from "./postUser.api";
 const BASE_URL = import.meta.env.VITE_API_BASE_URL as string;
 
 export const baseAPI = axios.create({
@@ -9,7 +10,7 @@ export const baseAPI = axios.create({
 });
 
 // 1. userID 생성/조회 함수: 반드시 string 반환
-function getOrCreateUserID(): string {
+async function getOrCreateUserID(): Promise<string> {
   let userID = sessionStorage.getItem("userID");
   if (!userID) {
     userID = uuidv4();
