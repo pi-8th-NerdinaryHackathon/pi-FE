@@ -8,6 +8,15 @@ import { formatWithCommas } from "@/utils/formatWithCommas";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getProductDetail } from "@/apis/getProductDetail.api";
+import { postWishList } from "@/apis/postWishList.api";
+import { path } from "@/routes/path";
+import iron from "@/assets/icons/iron.svg";
+import glass from "@/assets/icons/glass.svg";
+import plastic from "@/assets/icons/plastic.svg";
+import wood from "@/assets/icons/wood.svg";
+import febric from "@/assets/icons/febric.svg";
+
+const keys = ["iron", "glass", "plactic", "wood", "febric"];
 
 function Detail() {
   const [showModal, setShowModal] = useState(false);
@@ -15,12 +24,17 @@ function Detail() {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState();
+  const handlePost = () => {
+    postWishList({ productId: parseInt(id), count: 0 }).then(() => {
+      navigate(path.base);
+    });
+  };
   useEffect(() => {
     async function fetchProducts() {
       setIsLoading(true);
       try {
         const rawList = await getProductDetail(id); // RawProduct[]
-        setProducts(rawList.data);
+        setProducts(rawList.data.product);
       } catch (error) {
         console.error("상품 불러오기 실패", error);
       } finally {
@@ -50,6 +64,10 @@ function Detail() {
               content={products?.category?.name}
               className="bg-slate-100 text-gray-500"
             />
+            <Category
+              content={products?.material}
+              className="bg-slate-100 text-gray-500"
+            />
           </div>
 
           <div className="ml-1">
@@ -66,10 +84,13 @@ function Detail() {
         <hr />
 
         <ProgressBarBox min={0} max={1300} price={0} />
-        <RequiredTrash trash={"iron"} count={1000} />
+        <RequiredTrash trash={products?.material} count={1000} />
 
         <div className="flex w-full gap-[12px] py-[10px]">
-          <CommonButton className="bg-black text-white">
+          <CommonButton
+            onClick={() => handlePost()}
+            className="bg-black text-white"
+          >
             위시리스트 담기
           </CommonButton>
           <CommonButton
@@ -101,11 +122,11 @@ interface RequiredTrashProps {
 function RequiredTrash(props: RequiredTrashProps) {
   const { trash = "iron", count } = props;
 
-  const trashData = REQUIRED_TRASH.find((item) => item.key === trash) ?? null;
+  const trashData = REQUIRED_TRASH.find((item) => item.name === trash) ?? null;
 
   return (
     <div className="mt-4 flex flex-col items-center gap-3 rounded-[12px] bg-slate-200 px-4 py-5">
-      <img width={36} height={36} />
+      <img src={febric} width={36} height={36} />
       <div className="mb-1 flex gap-1 text-[18px] font-semibold">
         <p className="">재활용할</p>
         <Category
@@ -116,7 +137,9 @@ function RequiredTrash(props: RequiredTrashProps) {
       </div>
 
       <div className="flex w-full flex-col items-center gap-[10px] rounded-[12px] bg-white py-4">
-        <p className="text-[15px] font-medium">깨끗한 철 제품을 모아주세요!</p>
+        <p className="text-[15px] font-medium">
+          깨끗한 재활용 제품을 모아주세요!
+        </p>
 
         <ul className="list-inside list-disc text-center text-[#6B7280]">
           {trashData?.list.map((item, index) => <li key={index}>{item}</li>)}

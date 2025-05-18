@@ -10,4 +10,6 @@ export const API_DOMAINS = {
   POST_SEARCH_BY_IMAGE: "/api/search/image-search",
   POST_USER_LOGIN: "/api/auth/login",
   GET_CATEGORY: "/api/products/categories",
+  GET_USER: "/api/user",
+  WISH_LIST: "/api/user/wishlist",
 };
