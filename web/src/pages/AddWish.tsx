@@ -25,7 +25,7 @@ function parseProducts(rawList: any): ItemBoxProps[] {
   }));
 }
 function AddWish() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [, setIsLoading] = useState(false);
   const [products, setProducts] = useState<ItemBoxProps[]>([]);
   useEffect(() => {
     async function fetchProducts() {
