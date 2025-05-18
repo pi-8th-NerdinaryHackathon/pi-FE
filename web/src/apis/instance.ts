@@ -1,7 +1,6 @@
 // src/utils/api.ts
 import { uuidv4 } from "@/utils/uuidv4";
 import axios, { type InternalAxiosRequestConfig } from "axios";
-import { postUser } from "./postUser.api";
 import { getUser } from "./getUser.api";
 const BASE_URL = import.meta.env.VITE_API_BASE_URL as string;
 

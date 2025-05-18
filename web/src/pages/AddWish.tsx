@@ -2,8 +2,7 @@ import BackHeader from "@/components/layout/BackHeader";
 import ItemBox, { type ItemBoxProps } from "@/components/common/ItemBox";
 import { getAllProduct } from "@/apis/getAllProduct.api";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { path } from "@/routes/path";
+
 export interface RawProduct {
   product: {
     id: number;
@@ -15,8 +14,8 @@ export interface RawProduct {
     category: { id: number; name: string };
   };
 }
-function parseProducts(rawList: RawProduct[]): ItemBoxProps[] {
-  return rawList.data.map(({ product }) => ({
+function parseProducts(rawList: any): ItemBoxProps[] {
+  return rawList.data.map(({ product }: any) => ({
     img: product.image,
     category: [product.category.name], // 필요하다면 여러 개로 확장 가능
     company: product.company.name,

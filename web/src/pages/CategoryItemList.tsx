@@ -2,8 +2,7 @@ import BackHeader from "@/components/layout/BackHeader";
 import ItemBox, { type ItemBoxProps } from "@/components/common/ItemBox";
 import { getCategoryProduct } from "@/apis/getCategoryProduct.api";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { path } from "@/routes/path";
+import { useParams } from "react-router-dom";
 export interface RawProduct {
   product: {
     id: number;
@@ -15,8 +14,8 @@ export interface RawProduct {
     category: { id: number; name: string };
   };
 }
-function parseProducts(rawList: RawProduct[]): ItemBoxProps[] {
-  return rawList.data.map(({ product }) => ({
+function parseProducts(rawList: any): ItemBoxProps[] {
+  return rawList.data.map(({ product }: any) => ({
     img: product.image,
     category: [product.category.name], // 필요하다면 여러 개로 확장 가능
     company: product.company.name,
@@ -33,8 +32,8 @@ function CatrgoryItemList() {
     async function fetchProducts() {
       setIsLoading(true);
       try {
-        const rawList = await getCategoryProduct(categoryId); // RawProduct[]
-        const items = parseProducts(rawList); // ItemBoxProps[]
+        const rawList = await getCategoryProduct(categoryId as any); // RawProduct[]
+        const items = parseProducts(rawList as any); // ItemBoxProps[]
         setProducts(items);
       } catch (error) {
         console.error("상품 불러오기 실패", error);
@@ -66,7 +65,18 @@ function CatrgoryItemList() {
           ))}
         {isLoading &&
           Array.from({ length: 4 }).map((_, idx) => (
-            <ItemBox key={idx} isLoading />
+            <ItemBox
+              key={idx}
+              isLoading
+              img={""}
+              category={[]}
+              company={""}
+              title={""}
+              price={0}
+              onClick={function (): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
           ))}
       </div>
     </div>

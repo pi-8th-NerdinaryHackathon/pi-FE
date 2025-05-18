@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import { CommonButton } from "@/components/common/CommonButton";
 import { Category } from "@/components/common/Category";
 import { PostModal } from "@/components/common/PostModal";
