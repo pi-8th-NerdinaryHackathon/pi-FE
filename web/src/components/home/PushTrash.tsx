@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/drawer";
 import { Minus, Plus } from "lucide-react";
 import { CommonButton } from "../common/CommonButton";
+import febric from "@/assets/icons/febric.svg";
 
 interface PushTrashDrawerProps {
   triggerLabel?: string;
@@ -50,7 +51,7 @@ function PushTrashDrawer(props: PushTrashDrawerProps) {
           onClick={() => props.onClick()}
           className="flex w-full items-center justify-center gap-2.5 rounded-[1.875rem] bg-white py-3 shadow-[1px_3px_17px_rgba(17,24,39,0.08)]"
         >
-          <img className="aspect-square h-9 w-9 object-fill" />
+          <img src={febric} className="aspect-square h-9 w-9 object-fill" />
           <p className="text-[18px] font-semibold">
             모은 {props.category} 보내러가기
           </p>

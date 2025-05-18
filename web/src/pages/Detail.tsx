@@ -27,11 +27,7 @@ function Detail() {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState();
-  const handlePost = () => {
-    postWishList({ productId: parseInt(id), count: 0 }).then(() => {
-      navigate(path.base);
-    });
-  };
+
   useEffect(() => {
     async function fetchProducts() {
       setIsLoading(true);
@@ -90,12 +86,6 @@ function Detail() {
         <RequiredTrash trash={products?.material} count={1000} />
 
         <div className="flex w-full gap-[12px] py-[10px]">
-          <CommonButton
-            onClick={() => handlePost()}
-            className="bg-black text-white"
-          >
-            위시리스트 담기
-          </CommonButton>
           <CommonButton
             className="bg-[#0DAA80] text-white"
             onClick={() => setShowModal(true)}
