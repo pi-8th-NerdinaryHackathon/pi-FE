@@ -45,7 +45,7 @@ export const REQUIRED_TRASH = [
   },
   {
     key: "febric",
-    name: "천",
+    name: "면직물",
     list: [
       "헌 옷 (찢어지지 않고 깨끗한 것)",
       "수건 (오염 없는 상태)",
